@@ -37,14 +37,15 @@ double Op1=Double.parseDouble(txt_Num1.getText().toString());
 double Op2=Double.parseDouble(txt_Num2.getText().toString());
 double Res;
 if (v.equals(but_Add)) 
-Res=Op1+Op2;
+  Res=Op1+Op2;
 else if(v.equals(but_Sub)) 
-Res=Op1-Op2;
+  Res=Op1-Op2;
 else if(v.equals(but_Mul)) 
-Res=Op1*Op2;
+  Res=Op1*Op2;
 else if(v.equals(but_Div)) 
-Res=Op1/Op2;
+  Res=Op1/Op2;
 else
-Res=0; txt_Res.setText(String.valueOf(Res));
+  Res=0; 
+  txt_Res.setText(String.valueOf(Res));
 }
 }
