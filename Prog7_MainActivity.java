@@ -1,48 +1,44 @@
-package csmp.part_a.p7;
+package com.example.prog7;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, TextToSpeech.OnInitListener {
 
-    private EditText editText;
-    private TextToSpeech textToSpeech;
+    Button btnspeech ;
+    EditText txtspeech;
+    TextToSpeech textToSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editText = findViewById(R.id.edit_text);
-        Button button = findViewById(R.id.convert_button);
-
-        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(Locale.US);
-                }
-            }
-        });
-
-        button.setOnClickListener(this);
+        txtspeech = (EditText) findViewById(R.id.inputtxt);
+        btnspeech = (Button) findViewById(R.id.btnspeech);
+        btnspeech.setOnClickListener(this);
+        textToSpeech = new TextToSpeech(getBaseContext(),this);
+        textToSpeech.setLanguage(Locale.ENGLISH);
     }
 
     @Override
-    public void onClick(View view) {
-        String text = editText.getText().toString();
+    public void onClick(View v) {
+        String text = txtspeech.getText().toString();
+        textToSpeech.speak(text,TextToSpeech.QUEUE_FLUSH,null);
+    }
 
-        if (text.isEmpty()) {
-            text = "Please, Write something in the EditText...";
+    @Override
+    public void onInit(int status) {
+        if(status != TextToSpeech.ERROR){
+            Toast.makeText(getBaseContext(),"Success",Toast.LENGTH_LONG).show();
         }
-
-        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 }
