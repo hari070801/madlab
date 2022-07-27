@@ -1,142 +1,148 @@
-package csmp.part_a.p8;
+package com.example.prog8;
 
-import android.annotation.SuppressLint;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
-
-    private TextView inputTextView;
+    Button onebtn,twobtn,threebtn,fourbtn,fivebtn;
+    Button sixbtn,sevenbtn,eightbtn,ninebtn,zerobtn;
+    Button delbtn,callbtn,savebtn;
+    Button starbtn,hashbtn;
+    EditText phonenumbertext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        inputTextView = findViewById(R.id.expression);
+        onebtn = (Button) findViewById(R.id.btn1);
+        onebtn.setOnClickListener(this);
 
-        Button zeroBtn = findViewById(R.id.zero);
-        Button oneBtn = findViewById(R.id.one);
-        Button twoBtn = findViewById(R.id.two);
-        Button threeBtn = findViewById(R.id.three);
-        Button fourBtn = findViewById(R.id.four);
-        Button fiveBtn = findViewById(R.id.five);
-        Button sixBtn = findViewById(R.id.six);
-        Button sevenBtn = findViewById(R.id.seven);
-        Button eightBtn = findViewById(R.id.eight);
-        Button nineBtn = findViewById(R.id.nine);
+        twobtn = (Button) findViewById(R.id.btn2);
+        twobtn.setOnClickListener(this);
 
-        Button dotBtn = findViewById(R.id.asterisk);
-        Button hashBtn = findViewById(R.id.hash);
-        TextView backspaceBtn = findViewById(R.id.backspace);
+        threebtn = (Button) findViewById(R.id.btn3);
+        threebtn.setOnClickListener(this);
 
-        Button callBtn = findViewById(R.id.call);
-        Button saveBtn = findViewById(R.id.save);
+        fourbtn = (Button) findViewById(R.id.btn4);
+        fourbtn.setOnClickListener(this);
 
-        zeroBtn.setOnClickListener(this);
-        oneBtn.setOnClickListener(this);
-        twoBtn.setOnClickListener(this);
-        threeBtn.setOnClickListener(this);
-        fourBtn.setOnClickListener(this);
-        fiveBtn.setOnClickListener(this);
-        sixBtn.setOnClickListener(this);
-        sevenBtn.setOnClickListener(this);
-        eightBtn.setOnClickListener(this);
-        nineBtn.setOnClickListener(this);
+        fivebtn = (Button) findViewById(R.id.btn5);
+        fivebtn.setOnClickListener(this);
 
-        dotBtn.setOnClickListener(this);
-        backspaceBtn.setOnClickListener(this);
-        backspaceBtn.setOnLongClickListener(this);
-        hashBtn.setOnClickListener(this);
+        sixbtn = (Button) findViewById(R.id.btn6);
+        sixbtn.setOnClickListener(this);
 
-        callBtn.setOnClickListener(this);
-        saveBtn.setOnClickListener(this);
+        sevenbtn = (Button) findViewById(R.id.btn7);
+        sevenbtn.setOnClickListener(this);
+
+        eightbtn = (Button) findViewById(R.id.btn8);
+        eightbtn.setOnClickListener(this);
+
+        ninebtn = (Button) findViewById(R.id.btn9);
+        ninebtn.setOnClickListener(this);
+
+        zerobtn = (Button) findViewById(R.id.btn0);
+        zerobtn.setOnClickListener(this);
+
+        starbtn = (Button) findViewById(R.id.btnstar);
+        starbtn.setOnClickListener(this);
+
+        hashbtn = (Button) findViewById(R.id.btnhash);
+        hashbtn.setOnClickListener(this);
+
+        callbtn = (Button) findViewById(R.id.btncall);
+        callbtn.setOnClickListener(this);
+
+        savebtn = (Button) findViewById(R.id.btnsave);
+        savebtn.setOnClickListener(this);
+
+        delbtn = (Button) findViewById(R.id.btndel);
+        delbtn.setOnClickListener(this);
+
+        phonenumbertext = (EditText) findViewById(R.id.textphonenum);
+        phonenumbertext.setText("");
+
+
     }
 
-    @SuppressLint("NonConstantResourceId")
     @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        String inputPhoneNo = inputTextView.getText().toString();
+    public void onClick(View v) {
+        int id = v.getId();
+        String inputphonenum = phonenumbertext.getText().toString();
 
-        switch (id) {
-            case R.id.call:
-                callMethod(inputPhoneNo);
+        switch (id){
+            case R.id.btn0:
+                phonenumbertext.append("0");
                 break;
-            case R.id.save:
-                saveMethod(inputPhoneNo);
+            case R.id.btn1:
+                phonenumbertext.append("1");
                 break;
-            case R.id.zero:
-                inputTextView.append("0");
+            case R.id.btn2:
+                phonenumbertext.append("2");
                 break;
-            case R.id.one:
-                inputTextView.append("1");
+            case R.id.btn3:
+                phonenumbertext.append("3");
                 break;
-            case R.id.two:
-                inputTextView.append("2");
+            case R.id.btn4:
+                phonenumbertext.append("4");
                 break;
-            case R.id.three:
-                inputTextView.append("3");
+            case R.id.btn5:
+                phonenumbertext.append("5");
                 break;
-            case R.id.four:
-                inputTextView.append("4");
+            case R.id.btn6:
+                phonenumbertext.append("6");
                 break;
-            case R.id.five:
-                inputTextView.append("5");
+            case R.id.btn7:
+                phonenumbertext.append("7");
                 break;
-            case R.id.six:
-                inputTextView.append("6");
+            case R.id.btn8:
+                phonenumbertext.append("8");
                 break;
-            case R.id.seven:
-                inputTextView.append("7");
+            case R.id.btn9:
+                phonenumbertext.append("9");
                 break;
-            case R.id.eight:
-                inputTextView.append("8");
+            case R.id.btnstar:
+                phonenumbertext.append("*");
                 break;
-            case R.id.nine:
-                inputTextView.append("9");
+            case R.id.btnhash:
+                phonenumbertext.append("#");
                 break;
-            case R.id.asterisk:
-                inputTextView.append("*");
+
+            case R.id.btncall:
+                callMethod(inputphonenum);
                 break;
-            case R.id.hash:
-                inputTextView.append("#");
+            case R.id.btnsave:
+                saveMethod(inputphonenum);
                 break;
-            case R.id.backspace:
-                int inputLength = inputPhoneNo.length();
-                if (inputLength > 0) {
-                    inputTextView.setText(inputPhoneNo.substring(0, inputLength - 1));
+            case R.id.btndel:
+                int inputlength = inputphonenum.length();
+                if(inputlength>0){
+                    phonenumbertext.setText((inputphonenum.substring(0,inputlength-1)));
                 }
                 break;
         }
     }
 
     private void callMethod(String number) {
-        // if Intent.ACTION_CALL is used instead of Intent.ACTION_DIAL,
-        // then manually allow the telephone permission in the App Settings
         Intent intent = new Intent(Intent.ACTION_DIAL);
         Uri uri = Uri.parse("tel:" + number);
         intent.setData(uri);
         startActivity(intent);
     }
 
-    private void saveMethod(String inputPhoneNo) {
+    private void saveMethod(String inputphonenum) {
         Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION);
         intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
-        intent.putExtra(ContactsContract.Intents.Insert.PHONE, inputPhoneNo);
+        intent.putExtra(ContactsContract.Intents.Insert.PHONE,inputphonenum);
         startActivity(intent);
-    }
-
-    @Override
-    public boolean onLongClick(View view) {
-        inputTextView.setText("");
-        return true;
     }
 }
